@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="registered.xsd" type="application/xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<?xml-stylesheet href="registered.xsl" type="xsl"?>
+<christ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nostu-NamespaceSchemaLocation="registered.xsd">
+    <computer-science>
+        <stu-name>Roger</stu-name>
+        <stu-university>xyz University</stu-university>
+        <stu-phone>9832743245</stu-phone>
+        <stu-email>stu_a@university.in</stu-email>
+    </computer-science>
+    <computer-science>
+        <stu-name>Fernandez</stu-name>
+        <stu-university>mno University</stu-university>
+        <stu-phone>8903457656</stu-phone>
+        <stu-email>stu_b@university.in</stu-email>
+    </computer-science>
+    <computer-science>
+        <stu-name>Charlie</stu-name>
+        <stu-university>tuv University</stu-university>
+        <stu-phone>7829243746</stu-phone>
+        <stu-email>stu_c@university.in</stu-email>
+    </computer-science>  
+</christ>
