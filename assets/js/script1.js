@@ -111,28 +111,28 @@ phn.onkeypress = function(evt) {
     const rgx2 = /[^0-9]/;
     const rgx3 = /[0-9\b]{10}/;
     if (rgx3.test(phn.value)) {
-        msg[2].innerText = "Valid Phone number";
-        msg[2].style.color = "lime";
+        msg[3].innerText = "Valid Phone number";
+        msg[3].style.color = "lime";
         evt.preventDefault();
     } else if (rgx2.test(inp)) {
-        msg[2].innerText = "Phone Number can contain numbers ONLY";
-        msg[2].style.color = "tomato";
+        msg[3].innerText = "Phone Number can contain numbers ONLY";
+        msg[3].style.color = "tomato";
         evt.preventDefault();
     } else {
-        msg[2].innerText = "Invalid Phone number";
-        msg[2].style.color = "tomato";
+        msg[3].innerText = "Invalid Phone number";
+        msg[3].style.color = "tomato";
     }
 }
 
 phn.onkeyup = function() {
     const rgx1 = /^[0-9]{8,10}$/;
     if (phn.value === "") {
-        msg[2].innerText = "Phone Number CANNOT remain BLANK";
-        msg[2].style.color = "yellow";
+        msg[3].innerText = "Phone Number CANNOT remain BLANK";
+        msg[3].style.color = "yellow";
     }
     if (rgx1.test(phn.value)) {
-        msg[2].innerText = "Valid Phone number";
-        msg[2].style.color = "lime";
+        msg[3].innerText = "Valid Phone number";
+        msg[3].style.color = "lime";
     }
 }
 
