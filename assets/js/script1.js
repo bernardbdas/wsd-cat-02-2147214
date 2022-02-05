@@ -111,28 +111,28 @@ phn.onkeypress = function(evt) {
     const rgx2 = /[^0-9]/;
     const rgx3 = /[0-9\b]{10}/;
     if (rgx3.test(phn.value)) {
-        msg[3].innerText = "Valid Phone number";
-        msg[3].style.color = "lime";
+        msg[7].innerText = "Valid Phone number";
+        msg[7].style.color = "lime";
         evt.preventDefault();
     } else if (rgx2.test(inp)) {
-        msg[3].innerText = "Phone Number can contain numbers ONLY";
-        msg[3].style.color = "tomato";
+        msg[7].innerText = "Phone Number can contain numbers ONLY";
+        msg[7].style.color = "tomato";
         evt.preventDefault();
     } else {
-        msg[3].innerText = "Invalid Phone number";
-        msg[3].style.color = "tomato";
+        msg[7].innerText = "Invalid Phone number";
+        msg[7].style.color = "tomato";
     }
 }
 
 phn.onkeyup = function() {
     const rgx1 = /^[0-9]{8,10}$/;
     if (phn.value === "") {
-        msg[3].innerText = "Phone Number CANNOT remain BLANK";
-        msg[3].style.color = "yellow";
+        msg[7].innerText = "Phone Number CANNOT remain BLANK";
+        msg[7].style.color = "yellow";
     }
     if (rgx1.test(phn.value)) {
-        msg[3].innerText = "Valid Phone number";
-        msg[3].style.color = "lime";
+        msg[7].innerText = "Valid Phone number";
+        msg[7].style.color = "lime";
     }
 }
 
@@ -146,40 +146,40 @@ pass.onkeyup = function() {
     const rgx6 = /\B[0-9]{2,}/;
 
     if ((rgx1.test(pass.value) && rgx2.test(pass.value) && rgx3.test(pass.value)) && rgx4.test(pass.value) && (pass.value.length + 1 > 8)) {
-        msg[3].innerText = "Strong Password";
-        msg[3].style.color = "yellow";
+        msg[9].innerText = "Strong Password";
+        msg[9].style.color = "yellow";
         if (rgx5.test(pass.value) && rgx6.test(pass.value) && (pass.value.length + 1 > 12)) {
-            msg[3].innerText = "Hard to guess";
-            msg[3].style.color = "lime";
+            msg[9].innerText = "Hard to guess";
+            msg[9].style.color = "lime";
         }
     } else {
-        msg[3].innerText = "Weak Password";
-        msg[3].style.color = "tomato";
+        msg[9].innerText = "Weak Password";
+        msg[9].style.color = "tomato";
     }
     if (cpass.value === pass.value) {
-        msg[4].innerText = "Passwords match";
-        msg[4].style.color = "lime";
+        msg[10].innerText = "Passwords match";
+        msg[10].style.color = "lime";
     } else {
-        msg[4].innerText = "Passwords do not match";
-        msg[4].style.color = "tomato";
+        msg[10].innerText = "Passwords do not match";
+        msg[10].style.color = "tomato";
     }
     if (pass.value === "") {
-        msg[3].innerText = "Password CANNOT remain BLANK";
-        msg[3].style.color = "yellow";
+        msg[9].innerText = "Password CANNOT remain BLANK";
+        msg[9].style.color = "yellow";
     }
 }
 
 //validate confirm password
 cpass.onkeyup = function() {
     if (cpass.value === "") {
-        msg[4].innerText = "Confirm Password CANNOT remain BLANK"
-        msg[4].style.color = "yellow"
+        msg[10].innerText = "Confirm Password CANNOT remain BLANK"
+        msg[10].style.color = "yellow"
     } else if (cpass.value === pass.value) {
-        msg[4].innerText = "Passwords match";
-        msg[4].style.color = "lime";
+        msg[10].innerText = "Passwords match";
+        msg[10].style.color = "lime";
     } else {
-        msg[4].innerText = "Passwords do not match";
-        msg[4].style.color = "tomato";
+        msg[10].innerText = "Passwords do not match";
+        msg[10].style.color = "tomato";
     }
 }
 
