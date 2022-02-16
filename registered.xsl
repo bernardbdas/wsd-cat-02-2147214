@@ -12,7 +12,6 @@
                         <th>Phone no.</th>
                         <th>Email ID</th>
                     </tr>
-
                     <xsl:for-each select="christ/computer science">
                         <xsl:sort select="stu-name"/>
                         <tr>
@@ -30,7 +29,6 @@
                             </td>
                         </tr>
                     </xsl:for-each>
-
                 </table>
             </body>
         </html>

@@ -2,16 +2,37 @@
 //const form = document.getElementById('form');
 let uname = document.getElementById('name');
 let email = document.getElementById('email');
+let branch = document.getElementById('branch');
+let inst = document.getElementById('inst-name');
+let stat = document.getElementById('stat-ut');
+let addrs = document.getElementById('address');
+let age = document.getElementById('age');
 let phn = document.getElementById('phone');
+let usr = document.getElementById('uname');
 let pass = document.getElementById('password');
 let cpass = document.getElementById('cnf-password');
-let addrs = document.getElementById('address');
-let q1 = document.getElementById('chk-box');
-let q2 = document.getElementsByName('q2');
 let msg = document.getElementsByTagName('span');
 
+//validation flag
+let flag = 0
 
-//validate username
+//retrieve cookies from previous sessions
+window.onload = function() {
+    if (document.cookie.length != 0) {
+        var prev = document.cookie.split(";");
+        for (let i = 0; i < prev.length; i++) {
+            let temp = prev[i].split("=")
+            if (temp[0] == "username" && temp[1] != "") {
+                usr.value = temp[1];
+            }
+            if (temp[0] == "email" && temp[1] != "") {
+                usr.value = temp[1];
+            }
+        }
+    }
+}
+
+//validate name
 uname.onkeypress = function(evt) {
     const rgx1 = /[^a-z.\s]/i;
     const rgx2 = /[a-z.\s]{25}/i;
@@ -19,14 +40,23 @@ uname.onkeypress = function(evt) {
     if (rgx1.test(inp)) {
         msg[0].innerText = "Name CANNOT contain numbers or special characters";
         msg[0].style.color = "tomato";
+        flag = 0;
         evt.preventDefault(); //to lock numeric and special char input
-    } else
+    }
     if (rgx2.test(uname.value)) {
         evt.preventDefault();
     }
     if ((evt.keyCode || evt.charCode) === 8) {
         evt.allowDefault();
     }
+
+    //to capitalize first letter
+    var namestr = uname.value.toLowerCase().split(" ");
+    for (var i = 0; i < namestr.length; i++) {
+        namestr[i] = namestr[i].charAt(0).toUpperCase() + namestr[i].substring(1);
+    }
+    namestr = namestr.join(" ");
+    uname.value = namestr;
 }
 
 
@@ -35,12 +65,15 @@ uname.onkeyup = function(evt) {
     if (uname.value === "") {
         msg[0].innerText = "Name CANNOT remain BLANK";
         msg[0].style.color = "yellow";
+        flag = 0;
     } else if (!rgx1.test(uname.value)) {
         msg[0].innerText = "Name must contain ATLEAST 3 characters";
         msg[0].style.color = "tomato";
+        flag = 0;
     } else {
         msg[0].innerText = "VALID Name";
         msg[0].style.color = "lime";
+        flag = 1;
     }
 }
 
@@ -51,36 +84,42 @@ email.onkeypress = function(evt) {
     const rgx2 = /[A-Z]/;
     const rgx3 = /^([0-9]+)$/;
     const rgx4 = /[\.\_a-z0-9@]{35}/;
-    const rgx5 = /@christuniversity.in$/;
-    const rgx6 = /@mca.christuniversity.in$/;
-    const rgx7 = /@mda.christuniversity.in$/;
+    const rgx5 = /\.in$/;
+    const rgx6 = /\.co\.in$/;
+    const rgx7 = /\.com$/;
 
-
-    if (rgx4.test(email.value) || rgx5.test(email.value) || rgx6.test(email.value) || rgx7.test(email.value)) { //email cannot be more than 30 chars
-        evt.preventDefault(); //to lock the keyboard
-    }
-    if (rgx2.test(inp)) {
-        msg[1].innerText = "Email Address is ALWAYS lowercase";
-        msg[1].style.color = "tomato";
-        evt.preventDefault(); //to lock the keyboard
-    }
-    if (rgx1.test(inp)) {
-        msg[1].innerText = "Invalid Character entered";
-        msg[1].style.color = "tomato";
-        evt.preventDefault(); //to lock the keyboard
-    }
-    if (inp === "@" && rgx3.test(email.value)) {
-        msg[1].innerText = "Email Address must NOT contain ONLY numbers";
-        msg[1].style.color = "tomato";
-        evt.preventDefault(); //to lock the keyboard
-    }
-    if (inp === "@" && (/[@]/).test(email.value)) {
-        msg[1].innerText = "Email Address CANNOT contain '@' more than once";
-        msg[1].style.color = "tomato";
-        evt.preventDefault(); //to lock the keyboard
-    }
-    if ((evt.keyCode || evt.charCode) === 8) {
+    if (flag > 0) {
         evt.allowDefault();
+        if (rgx4.test(email.value) || rgx5.test(email.value) || rgx6.test(email.value) || rgx7.test(email.value)) { //email cannot be more than 30 chars
+            evt.preventDefault(); //to lock the keyboard
+        }
+        if (rgx2.test(inp)) {
+            msg[1].innerText = "Email Address is ALWAYS lowercase";
+            msg[1].style.color = "tomato";
+            evt.preventDefault(); //to lock the keyboard
+        }
+        if (rgx1.test(inp)) {
+            msg[1].innerText = "Invalid Character entered";
+            msg[1].style.color = "tomato";
+            evt.preventDefault(); //to lock the keyboard
+        }
+        if (inp === "@" && rgx3.test(email.value)) {
+            msg[1].innerText = "Email Address must NOT contain ONLY numbers";
+            msg[1].style.color = "tomato";
+            evt.preventDefault(); //to lock the keyboard
+        }
+        if (inp === "@" && (/[@]/).test(email.value)) {
+            msg[1].innerText = "Email Address CANNOT contain '@' more than once";
+            msg[1].style.color = "tomato";
+            evt.preventDefault(); //to lock the keyboard
+        }
+        if ((evt.keyCode || evt.charCode) == 8) {
+            evt.allowDefault();
+        }
+    } else {
+        msg[1].innerText = "Fill the previous field before filling this field";
+        msg[1].style.color = "pink";
+        evt.preventDefault();
     }
 }
 
@@ -88,21 +127,130 @@ email.onkeypress = function(evt) {
 email.onkeyup = function() {
     //const validMail1 = /^([\.\_a-zA-Z0-9]+)@([a-zA-Z]+)\.([a-zA-Z]){2,8}$/;
     //const validMail2 = /^([\.\_a-zA-Z0-9]+)@([a-zA-Z]+)\.([a-zA-Z]){2,3}\.[a-zA-Z]{1,3}$/;
-    const rgx1 = /^([\.\_a-z0-9]+)@christuniversity.in$/;
-    const rgx2 = /^([\.\_a-z0-9]+)@mca.christuniversity.in$/;
-    const rgx3 = /^([\.\_a-z0-9]+)@mda.christuniversity.in$/;
-    if (email.value === "") {
+    const rgx1 = /([\.\_a-z0-9]+)@/;
+    const rgx2 = /\.in$/;
+    const rgx3 = /\.co\.in$/;
+    const rgx4 = /\.com$/;
+    if (email.value == "") {
         msg[1].innerText = "Email Address CANNOT remain BLANK";
         msg[1].style.color = "yellow";
-    } else if (rgx1.test(email.value) || rgx2.test(email.value) || rgx3.test(email.value)) {
+    } else if (rgx1.test(email.value) && (rgx2.test(email.value) || rgx3.test(email.value) || rgx4.test(email.value))) {
         msg[1].innerText = "VALID Email Address";
         msg[1].style.color = "lime";
+        flag = 2;
     } else {
         msg[1].innerText = "INVALID Email Address";
         msg[1].style.color = "tomato";
+        flag = 1;
     }
 }
 
+
+//validate institution name
+inst.onkeypress = function(evt) {
+    const rgx1 = /[^a-z.,\s]/i;
+    const rgx2 = /[a-z.,\s]{40}/i;
+    var inp = String.fromCharCode(evt.which); //to get the currently pressed char from keyboard
+
+    if (flag > 1) {
+        evt.allowDefault();
+
+        if (rgx1.test(inp)) {
+            msg[3].innerText = "Institution Name CANNOT contain numbers or special characters";
+            msg[3].style.color = "tomato";
+            evt.preventDefault(); //to lock numeric and special char input
+        }
+        if (rgx2.test(inst.value)) {
+            evt.preventDefault();
+        }
+        if ((evt.keyCode || evt.charCode) === 8) {
+            evt.allowDefault();
+        }
+    } else {
+        msg[3].innerText = "Fill the previous field before filling this field";
+        msg[3].style.color = "pink";
+        evt.preventDefault();
+    }
+}
+
+inst.onkeyup = function(evt) {
+    const rgx1 = /[a-z.\s]{10,}/i;
+    if (inst.value == "") {
+        msg[3].innerText = "Institution Name CANNOT remain BLANK";
+        msg[3].style.color = "yellow";
+        flag = 2;
+    } else if (!rgx1.test(inst.value)) {
+        msg[3].innerText = "Institution Name must contain ATLEAST 10 characters";
+        msg[3].style.color = "tomato";
+        flag = 2;
+    } else {
+        msg[3].innerText = "VALID Institution  Name";
+        msg[3].style.color = "lime";
+        flag = 3;
+    }
+}
+
+//validate address
+addrs.onkeypress = function(evt) {
+    if (flag > 2) {
+        evt.allowDefault();
+        if ((evt.keyCode || evt.charCode) === 8) {
+            evt.allowDefault();
+        }
+        if (addrs.value.length + 1 >= 130) {
+            evt.preventDefault();
+        }
+
+    } else {
+        msg[5].innerText = "Fill the previous field before filling this field";
+        msg[5].style.color = "pink";
+        evt.preventDefault();
+    }
+}
+
+addrs.onkeyup = function(evt) {
+    if (addrs.value === "") {
+        msg[5].innerText = "Address CANNOT remain BLANK";
+        msg[5].style.color = "yellow";
+    }
+}
+
+//validate age
+age.onkeypress = function(evt) {
+    let inp = String.fromCharCode(evt.which);
+    const rgx1 = /[0-9]/;
+    if (flag > 3) {
+        evt.allowDefault();
+
+        if (rgx1.test(inp)) {
+            msg[6].innerText = "Age contains ONLY NUMERIC values";
+            msg[6].style.color = "tomato";
+            evt.preventDefault();
+        }
+        if ((evt.keyCode || evt.charCode) === 8) {
+            evt.allowDefault();
+        }
+    } else {
+        msg[6].innerText = "Fill the previous field before filling this field";
+        msg[6].style.color = "pink";
+        evt.preventDefault();
+    }
+}
+
+age.onkeyup = function() {
+    const rgx1 = /[0-9]{1,3}$/;
+    if (age.value == "") {
+        msg[6].innerText = "Age CANNOT remain BLANK";
+        msg[6].style.color = "yellow";
+        flag = 2;
+    }
+    if (rgx1.test(age.value)) {
+        msg[6].innerText = "Valid Age";
+        msg[6].style.color = "lime";
+        flag = 4;
+        evt.preventDefault();
+    }
+}
 
 //validate phone number
 phn.onkeypress = function(evt) {
@@ -110,22 +258,30 @@ phn.onkeypress = function(evt) {
 
     const rgx2 = /[^0-9]/;
     const rgx3 = /[0-9\b]{10}/;
-    if (rgx3.test(phn.value)) {
-        msg[7].innerText = "Valid Phone number";
-        msg[7].style.color = "lime";
-        evt.preventDefault();
-    } else if (rgx2.test(inp)) {
-        msg[7].innerText = "Phone Number can contain numbers ONLY";
-        msg[7].style.color = "tomato";
-        evt.preventDefault();
+    if (flag > 4) {
+        if (rgx3.test(phn.value)) {
+            msg[7].innerText = "Valid Phone number";
+            msg[7].style.color = "lime";
+            flag = 6;
+            evt.preventDefault();
+        } else if (rgx2.test(inp)) {
+            msg[7].innerText = "Phone Number can contain numbers ONLY";
+            msg[7].style.color = "tomato";
+            evt.preventDefault();
+        } else {
+            msg[7].innerText = "Invalid Phone number";
+            msg[7].style.color = "tomato";
+            flag = 5;
+        }
     } else {
-        msg[7].innerText = "Invalid Phone number";
-        msg[7].style.color = "tomato";
+        msg[7].innerText = "Fill the previous field before filling this field";
+        msg[7].style.color = "pink";
+        evt.preventDefault();
     }
 }
 
 phn.onkeyup = function() {
-    const rgx1 = /^[0-9]{8,10}$/;
+    const rgx1 = /^[0-9]{10}$/;
     if (phn.value === "") {
         msg[7].innerText = "Phone Number CANNOT remain BLANK";
         msg[7].style.color = "yellow";
@@ -133,10 +289,22 @@ phn.onkeyup = function() {
     if (rgx1.test(phn.value)) {
         msg[7].innerText = "Valid Phone number";
         msg[7].style.color = "lime";
+        flag = 6;
     }
 }
 
 //validate password
+pass.onkeypress = function(evt) {
+    if (flag > 6) {
+        evt.allowDefault();
+
+    } else {
+        msg[9].innerText = "Fill the previous field before filling this field";
+        msg[9].style.color = "pink";
+        evt.preventDefault();
+    }
+}
+
 pass.onkeyup = function() {
     const rgx1 = /[a-z]/;
     const rgx2 = /[A-Z]/;
@@ -183,23 +351,6 @@ cpass.onkeyup = function() {
     }
 }
 
-//validate address
-addrs.onkeypress = function(evt) {
-    if ((evt.keyCode || evt.charCode) === 8) {
-        evt.allowDefault();
-    }
-    if (addrs.value.length + 1 >= 130) {
-        evt.preventDefault();
-    }
-}
-
-addrs.onkeyup = function(evt) {
-    if (addrs.value === "") {
-        msg[5].innerText = "Address CANNOT remain BLANK";
-        msg[5].style.color = "yellow";
-    }
-}
-
 //validate question 1
 q1.onclick = function() {}
 
@@ -215,20 +366,13 @@ q2.onclick = function() {
 }
 
 //to set cookie
-function setcookie() {
-    var bg = addrs.value;
-    var overlay = document.getElementById('color-overlay');
-    if (bg != "") {
-        document.cookie = "color=" + bg + ";expires=Fri, 4 Feb 2022 11:59:59 UTC";
-        overlay.style.background = bg;
-    }
-
-    window.onload = function() {
-        if (document.cookie.length != 0) {
-            var previouscookies = document.cookie.split("=");
-            addrs.value = previouscookies[1];
-            overlay.style.background = previouscookies[1];
-        }
+function setcookie(days, hrs, mins) {
+    var d = new Date();
+    d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000) + (hrs * 60 * 60 * 1000) + (mins * 60 * 1000));
+    var exp = "expires=" + d.toUTCString();
+    if (usr.value != "" && email.value != "") {
+        document.cookie = "username=" + usr.value + ";" + expires;
+        document.cookie = "email=" + email.value + ";" + expires;
     }
 }
 
@@ -242,4 +386,6 @@ function getcookie() {
 }
 
 //to clear cookie
-function clearcookie() {}
+function clearcookie() {
+    document.cookie = "";
+}

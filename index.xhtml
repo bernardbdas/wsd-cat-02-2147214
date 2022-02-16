@@ -40,24 +40,25 @@
             <div class="form-set">
                 <label for="branch">Branch:</label>
                 <br />
-                <select name="branch" id="branch" placeholder="choose your branch*" required="required">
+                <select name="branch" id="branch" required="required">
+                    <option disabled="disabled" hidden="hidden" selected="selected">Select Branch</option>
                     <optgroup label="For Junior college students">
-                        <option value="arts" selected="selected">Arts</option>
-                        <option value="science" selected="selected">Science</option>
-                        <option value="commerce" selected="selected">Commerce</option>
-                        <option value="humanities" selected="selected">Humanities</option>
+                        <option value="arts">Arts</option>
+                        <option value="science">Science</option>
+                        <option value="commerce">Commerce</option>
+                        <option value="humanities">Humanities</option>
                     </optgroup>
                     <optgroup label="For UG students">
-                        <option value="bsccs" selected="selected">BSc. CS</option>
-                        <option value="bca" selected="selected">BCA</option>
-                        <option value="bscit" selected="selected">BSc. IT</option>
-                        <option value="bscphysics" selected="selected">BSc. Physics</option>
-                        <option value="bscchemistry" selected="selected">BSc. Chemistry</option>
+                        <option value="bsccs">BSc. CS</option>
+                        <option value="bca">BCA</option>
+                        <option value="bscit">BSc. IT</option>
+                        <option value="bscphysics">BSc. Physics</option>
+                        <option value="bscchemistry">BSc. Chemistry</option>
                     </optgroup>
                     <optgroup label="For PG students">
-                        <option value="mca" selected="selected">MCA</option>
-                        <option value="mda" selected="selected">MDA</option>
-                        <option value="mds" selected="selected">MDS</option>
+                        <option value="mca">MCA</option>
+                        <option value="mda">MDA</option>
+                        <option value="mds">MDS</option>
                     </optgroup>
                 </select>
                 <span></span>
@@ -75,45 +76,45 @@
                 <label for="stat-ut">State :</label>
                 <br />
                 <select name="stat-ut" id="stat-ut" placeholder="choose the state/union-territory you belong to*" required="required">
-                    <optgroup label="States" selected="selected">
-                        <option value="Andhra Pradesh" selected="selected">Andhra Pradesh</option>
-                        <option value="Arunachal Pradesh" selected="selected">Arunachal Pradesh</option>
-                        <option value="Assam" selected="selected">Assam</option>
-                        <option value="Bihar" selected="selected">Bihar</option>
-                        <option value="Chhattisgarh" selected="selected">Chhattisgarh</option>
-                        <option value="Goa" selected="selected">Goa</option>
-                        <option value="Gujarat" selected="selected">Gujarat</option>
-                        <option value="Haryana" selected="selected">Haryana</option>
-                        <option value="Himachal Pradesh" selected="selected">Himachal Pradesh</option>
-                        <option value="Jharkhand" selected="selected">Jharkhand</option>
-                        <option value="Karnataka" selected="selected">Karnataka</option>
-                        <option value="Kerala" selected="selected">Kerala</option>
-                        <option value="Madhya Pradesh" selected="selected">Madhya Pradesh</option>
-                        <option value="Maharashtra" selected="selected">Maharashtra</option>
-                        <option value="Manipur" selected="selected">Manipur</option>
-                        <option value="Meghalaya" selected="selected">Meghalaya</option>
-                        <option value="Mizoram" selected="selected">Mizoram</option>
-                        <option value="Nagaland" selected="selected">Nagaland</option>
-                        <option value="Odisha" selected="selected">Odisha</option>
-                        <option value="Punjab" selected="selected">Punjab</option>
-                        <option value="Rajasthan" selected="selected">Rajasthan</option>
-                        <option value="Sikkim" selected="selected">Sikkim</option>
-                        <option value="Tamil Nadu" selected="selected">Tamil Nadu</option>
-                        <option value="Telangana" selected="selected">Telangana</option>
-                        <option value="Tripura" selected="selected">Tripura</option>
-                        <option value="Uttarakhand" selected="selected">Uttarakhand</option>
-                        <option value="Uttar Pradesh" selected="selected">Uttar Pradesh</option>
-                        <option value="West Bengal" selected="selected">West Bengal</option>
+                    <optgroup label="States">
+                        <option value="Andhra Pradesh">Andhra Pradesh</option>
+                        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                        <option value="Assam">Assam</option>
+                        <option value="Bihar">Bihar</option>
+                        <option value="Chhattisgarh">Chhattisgarh</option>
+                        <option value="Goa">Goa</option>
+                        <option value="Gujarat">Gujarat</option>
+                        <option value="Haryana">Haryana</option>
+                        <option value="Himachal Pradesh">Himachal Pradesh</option>
+                        <option value="Jharkhand">Jharkhand</option>
+                        <option value="Karnataka">Karnataka</option>
+                        <option value="Kerala">Kerala</option>
+                        <option value="Madhya Pradesh">Madhya Pradesh</option>
+                        <option value="Maharashtra">Maharashtra</option>
+                        <option value="Manipur">Manipur</option>
+                        <option value="Meghalaya">Meghalaya</option>
+                        <option value="Mizoram">Mizoram</option>
+                        <option value="Nagaland">Nagaland</option>
+                        <option value="Odisha">Odisha</option>
+                        <option value="Punjab">Punjab</option>
+                        <option value="Rajasthan">Rajasthan</option>
+                        <option value="Sikkim">Sikkim</option>
+                        <option value="Tamil Nadu">Tamil Nadu</option>
+                        <option value="Telangana">Telangana</option>
+                        <option value="Tripura">Tripura</option>
+                        <option value="Uttarakhand">Uttarakhand</option>
+                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                        <option value="West Bengal">West Bengal</option>
                     </optgroup>
                     <optgroup label="Union Territories">
-                        <option value="Andaman and Nicobar Islands" selected="selected">Andaman and Nicobar Islands</option>
-                        <option value="Chandigarh" selected="selected">Chandigarh</option>
-                        <option value="Dadra and Nagar Haveli and Daman and Diu" selected="selected">Dadra and Nagar Haveli and Daman and Diu</option>
-                        <option value="The Government of NCT of Delhi" selected="selected">The Government of NCT of Delhi</option>
-                        <option value="Jammu and Kashmir" selected="selected">Jammu and Kashmir</option>
-                        <option value="Ladakh" selected="selected">Ladakh</option>
-                        <option value="Lakshadweep" selected="selected">Lakshadweep</option>
-                        <option value="Puducherry" selected="selected">Puducherry</option>
+                        <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                        <option value="Chandigarh">Chandigarh</option>
+                        <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
+                        <option value="The Government of NCT of Delhi">The Government of NCT of Delhi</option>
+                        <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                        <option value="Ladakh">Ladakh</option>
+                        <option value="Lakshadweep">Lakshadweep</option>
+                        <option value="Puducherry">Puducherry</option>
                     </optgroup>
                 </select>
                 <span></span>
@@ -164,10 +165,9 @@
             <button class="sub-btn" type="submit" onclick="onSubmit()">Submit Form</button>
         </form>
 
-        <button class="sub-btn" type="" onclick="setcookie()" style="background-color: #11ffff;">Add Cookie</button>
-        <button class="sub-btn" type="" onclick="getcookie()" style=" background-color: #f8b013;">Read Cookie</button>
-        <button class=" sub-btn" type="" onclick="clearcookie()" style="background-color: #00ff4c;">Clear
-            Cookie</button>
+        <button class="sub-btn" type="" onclick="setcookie(60)" style="background-color: #11ffff;">Enable Cookie</button>
+        <button class="sub-btn" type="" onclick="getcookie()" style=" background-color: #f8b013;">Load Cookie</button>
+        <button class=" sub-btn" type="" onclick="setcookie(0)" style="background-color: #00ff4c;">Clear Cookie</button>
     </div>
     <script type="javascript" src="assets/js/script1.js"></script>
 </body>

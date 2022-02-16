@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="registered.xsd" type="application/xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
-<?xml-stylesheet href="registered.xsl" type="xsl"?>
-<christ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nostu-NamespaceSchemaLocation="registered.xsd">
+<?xml-model href="registered.xsd" type="application/xml" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<?xml-stylesheet href="registered.xsl" type="text/xsl"?>
+<christ>
     <computer-science>
         <stu-name>Roger</stu-name>
         <stu-university>xyz University</stu-university>
